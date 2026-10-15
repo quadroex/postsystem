@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PostSystem.Data/PostSystem.Data.csproj" />
+    <Project Path="src/PostSystem.Cli/PostSystem.Cli.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PostSystem.IntegrationTests/PostSystem.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,49 @@
+name: Database checks
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: postsystem
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: postgres
+      PGDATABASE: postsystem
+      PGPASSWORD: postgres
+      POSTSYSTEM_APP_PASSWORD: ci-postal-password
+      POSTSYSTEM_CONNECTION: Host=localhost;Port=5432;Database=postsystem;Username=postsystem_local;Password=ci-postal-password
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Install database and restricted login
+        run: |
+          psql -X -v ON_ERROR_STOP=1 -1 -f db/install.sql
+          psql -X -v ON_ERROR_STOP=1 -1 -f db/005_access.sql
+          psql -X -v ON_ERROR_STOP=1 -1 -f db/create_login.sql
+      - name: Check database rules
+        run: psql -X -v ON_ERROR_STOP=1 -f db/verify.sql
+      - run: dotnet restore PostSystem.slnx --locked-mode
+      - run: dotnet build PostSystem.slnx --no-restore --configuration Release
+      - name: Check repositories and transactions
+        run: dotnet run --project tests/PostSystem.IntegrationTests --no-build --configuration Release

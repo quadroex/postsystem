@@ -25,3 +25,25 @@ PostgreSQL 18 · C# / .NET 10. Відправлення між відділен�
 ## 6 стадія — індекси
 
 Виконати `db/explain_indexes.sql`: у каталозі є **B-tree** та **GIN**, далі показано плани запитів. [Опис індексів](docs/indexes.md); SQL створення — `db/004_indexes.sql`.
+
+## 7 стадія — Repository + Unit of Work
+
+Налаштувати прикладний логін за [інструкцією](docs/setup.md), потім виконати:
+
+```powershell
+dotnet build PostSystem.slnx
+dotnet run --project src/PostSystem.Cli -- demo
+dotnet run --project tests/PostSystem.IntegrationTests
+```
+
+Очікується **17 успішних перевірок**. Демо показує спільний commit клієнтів, відправлення, пакунка й оплати, відкат помилкової операції, soft delete та аудит. Сценарії з commit залишають навчальні дані з унікальними номерами; решта відкочуються.
+
+Реалізація: `src/PostSystem.Data/Repositories.cs`, `PostalUnitOfWork.cs`, `DatabaseSession.cs`, `ShipmentService.cs`. Репозиторії використовують одну транзакцію; читання йде через `v_*`, зміни — через `CALL`. `db/005_access.sql` закриває прикладній ролі прямий доступ до таблиць.
+
+```powershell
+dotnet run --project src/PostSystem.Cli -- list
+dotnet run --project src/PostSystem.Cli -- track PSDEMO000001
+dotnet run --project src/PostSystem.Cli -- help
+```
+
+Результати перевірки — [docs/verification.md](docs/verification.md). GitHub Actions повторює встановлення й перевірки на PostgreSQL 18.
