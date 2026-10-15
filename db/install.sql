@@ -2,3 +2,4 @@
 \ir 001_schema.sql
 \ir 002_seed.sql
 \ir 003_logic.sql
+\ir 004_indexes.sql
