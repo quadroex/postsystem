@@ -13,3 +13,7 @@ PostgreSQL 18 · C# / .NET 10. Відправлення між відділен�
 ## 3 стадія — вимоги, soft delete та аудит
 
 Відкрити [вимоги R01–R18](docs/requirements.md). У `customers`, `addresses`, `branches`, `shipments` перевірити `deleted_at/deleted_by` та `updated_at/updated_by`. Функціональна перевірка після встановлення — `db/verify.sql`: архівування, відновлення, автор змін та збереження історії.
+
+## 4 стадія — PostgreSQL
+
+Встановити БД за [інструкцією](docs/setup.md). Таблиці й початкові дані — `db/001_schema.sql`, `db/002_seed.sql`. У pgAdmin відкрити **postsystem → Schemas → postal → Tables**: має бути 21 таблиця. Приклади номерів відстеження: `PS0000000001`, `PS0000000002`, `PS0000000003`.
