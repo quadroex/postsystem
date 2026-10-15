@@ -1,49 +1,45 @@
 # Система управління поштовими відправленнями
 
-PostgreSQL 18 · C# / .NET 10. Відправлення між відділеннями: клієнти, посилки, відстеження, перевезення та оплата.
+PostgreSQL 18, C# / .NET 10. Облік клієнтів, посилок, відстеження, перевезень та оплати. Нижче наведено матеріали для перевірки семи пунктів завдання.
 
-## 1 стадія — схема БД
+1 стадія. Схема БД
 
-Відкрити [postsystem.drawio](docs/design/postsystem.drawio) у diagrams.net через **File → Open from → Device**. На схемі наведено поля, типи, PK, FK та кратність зв’язків. [DBML](docs/design/schema.dbml) можна імпортувати в dbdiagram.io; [ER у Markdown](docs/design/er.md) доступна в GitHub.
+[ER-схема в GitHub](docs/design/er.md) містить таблиці, поля, типи, ключі та зв’язки. [Файл drawio](docs/design/postsystem.drawio) має повну модель і окремі сторінки відправлень, довідників, перевезень та аудиту.
 
-## 2 стадія — сутності
+2 стадія. Сутності
 
-Перевірити [каталог сутностей](docs/entities.md): 20 предметних таблиць і `audit_log`, разом **21**. Для кожної вказано призначення, поля та ключі.
+У [каталозі сутностей](docs/entities.md) описано 20 предметних таблиць і технічний журнал `audit_log`, разом 21. Для кожної вказано призначення, поля й ключі. Кількість таблиць у встановленій БД видно на знімку в пункті 4.
 
-## 3 стадія — вимоги, soft delete та аудит
+3 стадія. Вимоги, soft delete та аудит
 
-Відкрити [вимоги R01–R18](docs/requirements.md). У `customers`, `addresses`, `branches`, `shipments` перевірити `deleted_at/deleted_by` та `updated_at/updated_by`. Функціональна перевірка після встановлення — `db/verify.sql`: архівування, відновлення, автор змін та збереження історії.
+[Вимоги R01-R18](docs/requirements.md) пов’язані із сутностями. У `customers`, `addresses`, `branches`, `shipments` є час і автор зміни та архівування. На знімку видно створення, зміну, архівування й відновлення клієнта двома працівниками. [Окремий знімок soft delete](docs/evidence/06-soft-delete.jpg) показує: запис збережено, в активному представленні його немає.
 
-## 4 стадія — PostgreSQL
+![Архівування, відновлення та автори змін](docs/evidence/02-audit.jpg)
 
-Встановити БД за [інструкцією](docs/setup.md). Таблиці й початкові дані — `db/001_schema.sql`, `db/002_seed.sql`. У pgAdmin відкрити **postsystem → Schemas → postal → Tables**: має бути 21 таблиця. Приклади номерів відстеження: `PS0000000001`, `PS0000000002`, `PS0000000003`.
+4 стадія. Реалізація у PostgreSQL
 
-## 5 стадія — процедури, функції, тригери та View
+База `postsystem` встановлена на PostgreSQL 18. У схемі `postal` створено 21 таблицю. Приклад `PSDEMO000001` містить два пакунки загальною вагою 2,5 кг; вартість і оплата становлять 125 грн, статус `delivered`.
 
-Виконати `db/inspect.sql`: **17 процедур, 15 функцій, 26 тригерів, 12 представлень**. Призначення об’єктів — у [переліку API](docs/database-api.md). Після встановлення всіх SQL-файлів виконати `db/verify.sql`; очікуваний результат — «Усі перевірки пройдено». `db/demo.sql` запускати один раз: він створює оплачене відправлення `PSDEMO000001` із двома пакунками й журналом змін.
+![Встановлена база, кількість таблиць та приклад відправлення](docs/evidence/01-database.jpg)
 
-## 6 стадія — індекси
+5 стадія. Процедури, функції, тригери та View
 
-Виконати `db/explain_indexes.sql`: у каталозі є **B-tree** та **GIN**, далі показано плани запитів. [Опис індексів](docs/indexes.md); SQL створення — `db/004_indexes.sql`.
+Створено 17 процедур, 15 функцій, 26 тригерів і 12 представлень. Вони забезпечують роботу з відправленнями, оплатами, soft delete та аудитом. Реалізація міститься у [SQL-файлі](db/003_logic.sql).
 
-## 7 стадія — Repository + Unit of Work
+![Об’єкти бази даних](docs/evidence/03-objects.jpg)
 
-Налаштувати прикладний логін за [інструкцією](docs/setup.md), потім виконати:
+6 стадія. Індекси
 
-```powershell
-dotnet build PostSystem.slnx
-dotnet run --project src/PostSystem.Cli -- demo
-dotnet run --project tests/PostSystem.IntegrationTests
-```
+Використано два методи індексування: B-tree для ключів, станів та історії; GIN для пошуку клієнтів і даних JSONB. На знімку наведено назви й типи індексів. [SQL створення](db/004_indexes.sql).
 
-Очікується **17 успішних перевірок**. Демо показує спільний commit клієнтів, відправлення, пакунка й оплати, відкат помилкової операції, soft delete та аудит. Сценарії з commit залишають навчальні дані з унікальними номерами; решта відкочуються.
+![Індекси B-tree та GIN](docs/evidence/04-indexes.jpg)
 
-Реалізація: `src/PostSystem.Data/Repositories.cs`, `PostalUnitOfWork.cs`, `DatabaseSession.cs`, `ShipmentService.cs`. Репозиторії використовують одну транзакцію; читання йде через `v_*`, зміни — через `CALL`. `db/005_access.sql` закриває прикладній ролі прямий доступ до таблиць.
+7 стадія. Repository + Unit of Work
 
-```powershell
-dotnet run --project src/PostSystem.Cli -- list
-dotnet run --project src/PostSystem.Cli -- track PSDEMO000001
-dotnet run --project src/PostSystem.Cli -- help
-```
+[Репозиторії](src/PostSystem.Data/Repositories.cs) працюють зі спільною транзакцією [Unit of Work](src/PostSystem.Data/PostalUnitOfWork.cs): читають представлення та викликають процедури для змін. [Приклад реєстрації](src/PostSystem.Data/ShipmentService.cs) зберігає клієнтів, відправлення, пакунок і оплату одним commit.
 
-Результати перевірки — [docs/verification.md](docs/verification.md). GitHub Actions повторює встановлення й перевірки на PostgreSQL 18.
+Пройдено 17 інтеграційних перевірок, зокрема спільний commit, відкат після помилки, soft delete, аудит і дві одночасні оплати. Пряме читання таблиць прикладною роллю заборонено. [Успішний запуск GitHub Actions](https://github.com/quadroex/postsystem/actions/runs/38719289861) містить повний журнал збірки та перевірок.
+
+![Збережений журнал локального запуску 17 перевірок](docs/evidence/05-tests.jpg)
+
+[Результати перевірки від 15.10.2026](docs/verification.md). [Технічний додаток: встановлення та запуск](docs/setup.md).

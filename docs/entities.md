@@ -28,7 +28,7 @@
 
 ## Поля та ключі
 
-`NULL` — поле необов’язкове. Для інших полів діє `NOT NULL`. Складені ключі наведено під таблицею. Значення за замовчуванням та перевірки значень — у [`001_schema.sql`](../db/001_schema.sql).
+`NULL` - поле необов’язкове. Для інших полів діє `NOT NULL`. Складені ключі наведено під таблицею. Значення за замовчуванням та перевірки значень - у [`001_schema.sql`](../db/001_schema.sql).
 
 ### `app_users`
 
@@ -36,8 +36,8 @@
 |---|---|---|---|
 | `id` | `uuid` | PK | ні |
 | `username` | `text` | UQ | ні |
-| `full_name` | `text` | — | ні |
-| `is_active` | `boolean` | — | ні |
+| `full_name` | `text` | - | ні |
+| `is_active` | `boolean` | - | ні |
 
 ### `countries`
 
@@ -53,7 +53,7 @@
 |---|---|---|---|
 | `id` | `integer` | PK | ні |
 | `country_id` | `integer` | FK → `countries.id` | ні |
-| `name` | `text` | — | ні |
+| `name` | `text` | - | ні |
 
 Унікальна комбінація: `country_id, name`.
 
@@ -63,14 +63,14 @@
 |---|---|---|---|
 | `id` | `integer` | PK | ні |
 | `city_id` | `integer` | FK → `cities.id` | ні |
-| `street` | `text` | — | ні |
-| `building` | `text` | — | ні |
-| `postal_code` | `text` | — | ні |
-| `created_at` | `timestamptz` | — | ні |
+| `street` | `text` | - | ні |
+| `building` | `text` | - | ні |
+| `postal_code` | `text` | - | ні |
+| `created_at` | `timestamptz` | - | ні |
 | `created_by` | `uuid` | FK → `app_users.id` | ні |
-| `updated_at` | `timestamptz` | — | ні |
+| `updated_at` | `timestamptz` | - | ні |
 | `updated_by` | `uuid` | FK → `app_users.id` | ні |
-| `deleted_at` | `timestamptz` | — | так |
+| `deleted_at` | `timestamptz` | - | так |
 | `deleted_by` | `uuid` | FK → `app_users.id` | так |
 
 ### `branches`
@@ -79,14 +79,14 @@
 |---|---|---|---|
 | `id` | `integer` | PK | ні |
 | `code` | `text` | UQ | ні |
-| `name` | `text` | — | ні |
+| `name` | `text` | - | ні |
 | `address_id` | `integer` | FK → `addresses.id` | ні |
-| `is_operational` | `boolean` | — | ні |
-| `created_at` | `timestamptz` | — | ні |
+| `is_operational` | `boolean` | - | ні |
+| `created_at` | `timestamptz` | - | ні |
 | `created_by` | `uuid` | FK → `app_users.id` | ні |
-| `updated_at` | `timestamptz` | — | ні |
+| `updated_at` | `timestamptz` | - | ні |
 | `updated_by` | `uuid` | FK → `app_users.id` | ні |
-| `deleted_at` | `timestamptz` | — | так |
+| `deleted_at` | `timestamptz` | - | так |
 | `deleted_by` | `uuid` | FK → `app_users.id` | так |
 
 ### `customers`
@@ -94,14 +94,14 @@
 | Поле | Тип PostgreSQL | Ключ / зв’язок | NULL |
 |---|---|---|---|
 | `id` | `uuid` | PK | ні |
-| `full_name` | `text` | — | ні |
-| `email` | `text` | — | ні |
-| `phone` | `text` | — | ні |
-| `created_at` | `timestamptz` | — | ні |
+| `full_name` | `text` | - | ні |
+| `email` | `text` | - | ні |
+| `phone` | `text` | - | ні |
+| `created_at` | `timestamptz` | - | ні |
 | `created_by` | `uuid` | FK → `app_users.id` | ні |
-| `updated_at` | `timestamptz` | — | ні |
+| `updated_at` | `timestamptz` | - | ні |
 | `updated_by` | `uuid` | FK → `app_users.id` | ні |
-| `deleted_at` | `timestamptz` | — | так |
+| `deleted_at` | `timestamptz` | - | так |
 | `deleted_by` | `uuid` | FK → `app_users.id` | так |
 
 ### `service_types`
@@ -110,8 +110,8 @@
 |---|---|---|---|
 | `id` | `integer` | PK | ні |
 | `code` | `text` | UQ | ні |
-| `name` | `text` | — | ні |
-| `is_active` | `boolean` | — | ні |
+| `name` | `text` | - | ні |
+| `is_active` | `boolean` | - | ні |
 
 ### `shipment_statuses`
 
@@ -119,8 +119,8 @@
 |---|---|---|---|
 | `id` | `integer` | PK | ні |
 | `code` | `text` | UQ | ні |
-| `name` | `text` | — | ні |
-| `is_terminal` | `boolean` | — | ні |
+| `name` | `text` | - | ні |
+| `is_terminal` | `boolean` | - | ні |
 
 ### `tariffs`
 
@@ -128,10 +128,10 @@
 |---|---|---|---|
 | `id` | `integer` | PK | ні |
 | `service_type_id` | `integer` | UQ; FK → `service_types.id` | ні |
-| `base_price` | `numeric(12,2)` | — | ні |
-| `price_per_kg` | `numeric(12,2)` | — | ні |
-| `insurance_rate` | `numeric(6,4)` | — | ні |
-| `max_weight_kg` | `numeric(10,3)` | — | ні |
+| `base_price` | `numeric(12,2)` | - | ні |
+| `price_per_kg` | `numeric(12,2)` | - | ні |
+| `insurance_rate` | `numeric(6,4)` | - | ні |
+| `max_weight_kg` | `numeric(10,3)` | - | ні |
 
 ### `shipments`
 
@@ -145,13 +145,13 @@
 | `destination_branch_id` | `integer` | FK → `branches.id` | ні |
 | `service_type_id` | `integer` | FK → `service_types.id` | ні |
 | `status_id` | `integer` | FK → `shipment_statuses.id` | ні |
-| `declared_value` | `numeric(12,2)` | — | ні |
-| `price` | `numeric(12,2)` | — | ні |
-| `created_at` | `timestamptz` | — | ні |
+| `declared_value` | `numeric(12,2)` | - | ні |
+| `price` | `numeric(12,2)` | - | ні |
+| `created_at` | `timestamptz` | - | ні |
 | `created_by` | `uuid` | FK → `app_users.id` | ні |
-| `updated_at` | `timestamptz` | — | ні |
+| `updated_at` | `timestamptz` | - | ні |
 | `updated_by` | `uuid` | FK → `app_users.id` | ні |
-| `deleted_at` | `timestamptz` | — | так |
+| `deleted_at` | `timestamptz` | - | так |
 | `deleted_by` | `uuid` | FK → `app_users.id` | так |
 
 ### `parcels`
@@ -160,12 +160,12 @@
 |---|---|---|---|
 | `id` | `uuid` | PK | ні |
 | `shipment_id` | `uuid` | FK → `shipments.id` | ні |
-| `description` | `text` | — | ні |
-| `weight_kg` | `numeric(10,3)` | — | ні |
-| `length_cm` | `numeric(8,2)` | — | ні |
-| `width_cm` | `numeric(8,2)` | — | ні |
-| `height_cm` | `numeric(8,2)` | — | ні |
-| `created_at` | `timestamptz` | — | ні |
+| `description` | `text` | - | ні |
+| `weight_kg` | `numeric(10,3)` | - | ні |
+| `length_cm` | `numeric(8,2)` | - | ні |
+| `width_cm` | `numeric(8,2)` | - | ні |
+| `height_cm` | `numeric(8,2)` | - | ні |
+| `created_at` | `timestamptz` | - | ні |
 | `created_by` | `uuid` | FK → `app_users.id` | ні |
 
 ### `shipment_events`
@@ -176,8 +176,8 @@
 | `shipment_id` | `uuid` | FK → `shipments.id` | ні |
 | `status_id` | `integer` | FK → `shipment_statuses.id` | ні |
 | `branch_id` | `integer` | FK → `branches.id` | ні |
-| `note` | `text` | — | ні |
-| `occurred_at` | `timestamptz` | — | ні |
+| `note` | `text` | - | ні |
+| `occurred_at` | `timestamptz` | - | ні |
 | `recorded_by` | `uuid` | FK → `app_users.id` | ні |
 
 ### `delivery_attempts`
@@ -187,10 +187,10 @@
 | `id` | `uuid` | PK | ні |
 | `shipment_id` | `uuid` | FK → `shipments.id` | ні |
 | `branch_id` | `integer` | FK → `branches.id` | ні |
-| `attempt_no` | `integer` | — | ні |
-| `outcome` | `text` | — | ні |
-| `note` | `text` | — | ні |
-| `attempted_at` | `timestamptz` | — | ні |
+| `attempt_no` | `integer` | - | ні |
+| `outcome` | `text` | - | ні |
+| `note` | `text` | - | ні |
+| `attempted_at` | `timestamptz` | - | ні |
 | `recorded_by` | `uuid` | FK → `app_users.id` | ні |
 
 Унікальна комбінація: `shipment_id, attempt_no`.
@@ -201,9 +201,9 @@
 |---|---|---|---|
 | `id` | `integer` | PK | ні |
 | `code` | `text` | UQ | ні |
-| `name` | `text` | — | ні |
-| `requires_reference` | `boolean` | — | ні |
-| `is_active` | `boolean` | — | ні |
+| `name` | `text` | - | ні |
+| `requires_reference` | `boolean` | - | ні |
+| `is_active` | `boolean` | - | ні |
 
 ### `payments`
 
@@ -211,10 +211,10 @@
 |---|---|---|---|
 | `id` | `uuid` | PK | ні |
 | `shipment_id` | `uuid` | FK → `shipments.id` | ні |
-| `amount` | `numeric(12,2)` | — | ні |
+| `amount` | `numeric(12,2)` | - | ні |
 | `payment_method_id` | `integer` | FK → `payment_methods.id` | ні |
 | `reference` | `text` | UQ | так |
-| `paid_at` | `timestamptz` | — | ні |
+| `paid_at` | `timestamptz` | - | ні |
 | `recorded_by` | `uuid` | FK → `app_users.id` | ні |
 
 ### `vehicles`
@@ -223,8 +223,8 @@
 |---|---|---|---|
 | `id` | `integer` | PK | ні |
 | `registration_number` | `text` | UQ | ні |
-| `max_load_kg` | `numeric(10,3)` | — | ні |
-| `is_active` | `boolean` | — | ні |
+| `max_load_kg` | `numeric(10,3)` | - | ні |
+| `is_active` | `boolean` | - | ні |
 
 ### `transport_routes`
 
@@ -242,7 +242,7 @@
 | `id` | `integer` | PK | ні |
 | `route_id` | `integer` | FK → `transport_routes.id` | ні |
 | `branch_id` | `integer` | FK → `branches.id` | ні |
-| `stop_order` | `integer` | — | ні |
+| `stop_order` | `integer` | - | ні |
 
 Унікальна комбінація: `route_id, stop_order`.
 
@@ -255,9 +255,9 @@
 | `id` | `uuid` | PK | ні |
 | `route_id` | `integer` | FK → `transport_routes.id` | ні |
 | `vehicle_id` | `integer` | FK → `vehicles.id` | ні |
-| `departure_at` | `timestamptz` | — | ні |
-| `arrival_at` | `timestamptz` | — | так |
-| `status` | `text` | — | ні |
+| `departure_at` | `timestamptz` | - | ні |
+| `arrival_at` | `timestamptz` | - | так |
+| `status` | `text` | - | ні |
 | `created_by` | `uuid` | FK → `app_users.id` | ні |
 
 ### `run_shipments`
@@ -266,7 +266,7 @@
 |---|---|---|---|
 | `run_id` | `uuid` | PK; FK → `transport_runs.id` | ні |
 | `shipment_id` | `uuid` | PK; UQ; FK → `shipments.id` | ні |
-| `loaded_at` | `timestamptz` | — | ні |
+| `loaded_at` | `timestamptz` | - | ні |
 | `loaded_by` | `uuid` | FK → `app_users.id` | ні |
 
 Складений PK: `run_id, shipment_id`.
@@ -278,10 +278,10 @@
 | Поле | Тип PostgreSQL | Ключ / зв’язок | NULL |
 |---|---|---|---|
 | `id` | `bigint` | PK | ні |
-| `entity_name` | `text` | — | ні |
-| `entity_id` | `text` | — | ні |
-| `operation` | `text` | — | ні |
-| `changed_at` | `timestamptz` | — | ні |
+| `entity_name` | `text` | - | ні |
+| `entity_id` | `text` | - | ні |
+| `operation` | `text` | - | ні |
+| `changed_at` | `timestamptz` | - | ні |
 | `changed_by` | `uuid` | FK → `app_users.id` | ні |
-| `old_data` | `jsonb` | — | так |
-| `new_data` | `jsonb` | — | ні |
+| `old_data` | `jsonb` | - | так |
+| `new_data` | `jsonb` | - | ні |

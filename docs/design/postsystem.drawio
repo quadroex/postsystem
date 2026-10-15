@@ -8,7 +8,7 @@
         <mxCell id="title" value="Повна модель · PostgreSQL" style="text;html=0;align=left;fontSize=26;fontStyle=1;fontColor=#183047;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="40" y="0" width="1000" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="legend" value="PK — первинний ключ; FK — зовнішній ключ; UQ — унікальність; NULL — необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK). Зв’язки *_by → app_users.id винесено на сторінку «Аудит»." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="legend" value="PK - первинний ключ; FK - зовнішній ключ; UQ - унікальність; NULL - необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK). Зв’язки *_by → app_users.id винесено на сторінку «Аудит»." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="40" y="53" width="1500" height="50" as="geometry" />
         </mxCell>
         <mxCell id="app_users" value="app_users" style="swimlane;html=0;startSize=34;horizontal=1;rounded=0;fillColor=#41556D;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;fontColor=#FFFFFF;fontStyle=1;fontSize=15;align=left;spacingLeft=12;collapsible=0;whiteSpace=wrap;" vertex="1" parent="1">
@@ -595,7 +595,7 @@
         <mxCell id="title" value="Відправлення · PostgreSQL" style="text;html=0;align=left;fontSize=26;fontStyle=1;fontColor=#183047;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="40" y="0" width="1000" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="legend" value="PK — первинний ключ; FK — зовнішній ключ; UQ — унікальність; NULL — необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK). Зв’язки *_by → app_users.id винесено на сторінку «Аудит»." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="legend" value="PK - первинний ключ; FK - зовнішній ключ; UQ - унікальність; NULL - необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK). Зв’язки *_by → app_users.id винесено на сторінку «Аудит»." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="40" y="53" width="1500" height="50" as="geometry" />
         </mxCell>
         <mxCell id="customers" value="customers" style="swimlane;html=0;startSize=34;horizontal=1;rounded=0;fillColor=#176C68;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;fontColor=#FFFFFF;fontStyle=1;fontSize=15;align=left;spacingLeft=12;collapsible=0;whiteSpace=wrap;" vertex="1" parent="1">
@@ -927,7 +927,7 @@
         <mxCell id="title" value="Довідники й тарифи · PostgreSQL" style="text;html=0;align=left;fontSize=26;fontStyle=1;fontColor=#183047;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="40" y="0" width="1000" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="legend" value="PK — первинний ключ; FK — зовнішній ключ; UQ — унікальність; NULL — необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK). Зв’язки *_by → app_users.id винесено на сторінку «Аудит»." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="legend" value="PK - первинний ключ; FK - зовнішній ключ; UQ - унікальність; NULL - необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK). Зв’язки *_by → app_users.id винесено на сторінку «Аудит»." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="40" y="53" width="1500" height="50" as="geometry" />
         </mxCell>
         <mxCell id="countries" value="countries" style="swimlane;html=0;startSize=34;horizontal=1;rounded=0;fillColor=#456D9B;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;fontColor=#FFFFFF;fontStyle=1;fontSize=15;align=left;spacingLeft=12;collapsible=0;whiteSpace=wrap;" vertex="1" parent="1">
@@ -1121,7 +1121,7 @@
         <mxCell id="title" value="Перевезення · PostgreSQL" style="text;html=0;align=left;fontSize=26;fontStyle=1;fontColor=#183047;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="40" y="0" width="1000" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="legend" value="PK — первинний ключ; FK — зовнішній ключ; UQ — унікальність; NULL — необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK). Зв’язки *_by → app_users.id винесено на сторінку «Аудит»." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="legend" value="PK - первинний ключ; FK - зовнішній ключ; UQ - унікальність; NULL - необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK). Зв’язки *_by → app_users.id винесено на сторінку «Аудит»." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="40" y="53" width="1500" height="50" as="geometry" />
         </mxCell>
         <mxCell id="branches" value="branches" style="swimlane;html=0;startSize=34;horizontal=1;rounded=0;fillColor=#456D9B;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;fontColor=#FFFFFF;fontStyle=1;fontSize=15;align=left;spacingLeft=12;collapsible=0;whiteSpace=wrap;" vertex="1" parent="1">
@@ -1345,7 +1345,7 @@
         <mxCell id="title" value="Аудит · PostgreSQL" style="text;html=0;align=left;fontSize=26;fontStyle=1;fontColor=#183047;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="40" y="0" width="1000" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="legend" value="PK — первинний ключ; FK — зовнішній ключ; UQ — унікальність; NULL — необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK)." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="legend" value="PK - первинний ключ; FK - зовнішній ключ; UQ - унікальність; NULL - необов’язкове поле. Зв’язок: батько 1 / 0..1 → дочірні записи 0..N (0..1 за унікального FK)." style="text;html=0;align=left;fontSize=13;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="40" y="53" width="1500" height="50" as="geometry" />
         </mxCell>
         <mxCell id="app_users" value="app_users" style="swimlane;html=0;startSize=34;horizontal=1;rounded=0;fillColor=#41556D;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;fontColor=#FFFFFF;fontStyle=1;fontSize=15;align=left;spacingLeft=12;collapsible=0;whiteSpace=wrap;" vertex="1" parent="1">

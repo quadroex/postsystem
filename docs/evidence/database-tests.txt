@@ -1,0 +1,21 @@
+BEGIN
+psql:db/verify.sql:250: ПОВІДОМЛЕННЯ:  PASS actor context and audit
+psql:db/verify.sql:250: ПОВІДОМЛЕННЯ:  PASS shipment aggregate, tariff, transitions and manifest
+psql:db/verify.sql:250: ПОВІДОМЛЕННЯ:  PASS payments and delivery
+psql:db/verify.sql:250: ПОВІДОМЛЕННЯ:  PASS soft deletion, restoration and active email uniqueness
+psql:db/verify.sql:250: ПОВІДОМЛЕННЯ:  PASS address and branch lifecycle
+psql:db/verify.sql:250: ПОВІДОМЛЕННЯ:  PASS atomic rollback and immutable history
+DO
+ object_type | object_count
+-------------+--------------
+ tables      |           21
+ routines    |           32
+ views       |           12
+ triggers    |           26
+(4 rows)
+
+ROLLBACK
+                      result
+--------------------------------------------------
+ Усі перевірки пройдено; тестові зміни відкочено.
+(1 row)
